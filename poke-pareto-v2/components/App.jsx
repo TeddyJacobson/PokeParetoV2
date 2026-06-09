@@ -1,5 +1,6 @@
 import { PokeDex } from "@atosjs/pokemon";
 import { useState, useEffect } from "react"
+import { LineGraph } from "./LineGraph";
 
 export default function App() {
     // A list of every pokemon
@@ -25,9 +26,7 @@ export default function App() {
             <h1>
                 Pokemon Pareto V2
             </h1>
-            {allPokes && <>
-                <h2>This is a test</h2>
-            </>}
+            {allPokes && <LineGraph />}
         </>
     )
 }
