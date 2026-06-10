@@ -56,10 +56,6 @@ export default function App() {
         for (let i = 0; i < types.length; i++) {
             checkTypeMap.set(types[i], formData.get(types[i]))
         }
-        
-
-        // Getting the chosen generations to optimize
-        //TODO:
 
 
         // Radix sort style, inserts all pokemon as graph cords into the 3D array
@@ -74,7 +70,53 @@ export default function App() {
                 }
             })
 
-            // Check gen
+            // Check gens
+            let id = pokemon.id
+            if (id < 152) {
+                if (formData.get('gen1') == null) {
+                    isValid = false
+                }
+            }
+            else if (id < 252) {
+                if (formData.get('gen2') == null) {
+                    isValid = false
+                }
+            }
+            else if (id < 387) {
+                if (formData.get('gen3') == null) {
+                    isValid = false
+                }
+            }
+            else if (id < 494) {
+                if (formData.get('gen4') == null) {
+                    isValid = false
+                }
+            }
+            else if (id < 650) {
+                if (formData.get('gen5') == null) {
+                    isValid = false
+                }
+            }
+            else if (id < 722) {
+                if (formData.get('gen6') == null) {
+                    isValid = false
+                }
+            }
+            else if (id < 808) {
+                if (formData.get('gen7') == null) {
+                    isValid = false
+                }
+            }
+            else if (id < 899) {
+                if (formData.get('gen8') == null) {
+                    isValid = false
+                }
+            }
+            else {
+                if (formData.get('gen9') == null) {
+                    isValid = false
+                }
+            }
 
             if (isValid) {
                 // Compiles each base stats into a simple list
@@ -172,7 +214,7 @@ export default function App() {
                             {types.slice(0, 9).map(givenType => {
                                 return (<div key={givenType}>
                                     <label htmlFor={givenType}>{givenType}:</label>
-                                    <input type="checkbox" name={givenType} id={givenType} val={givenType} defaultChecked />
+                                    <input type="checkbox" name={givenType} id={givenType} defaultChecked />
                                 </div>)
                             })}
                         </div>
@@ -180,7 +222,7 @@ export default function App() {
                             {types.slice(9).map(givenType => {
                                 return (<div key={givenType}>
                                     <label htmlFor={givenType}>{givenType}:</label>
-                                    <input type="checkbox" name={givenType} id={givenType} val={givenType} defaultChecked />
+                                    <input type="checkbox" name={givenType} id={givenType} defaultChecked />
                                 </div>)
                             })}
                         </div>
@@ -192,7 +234,7 @@ export default function App() {
                             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(givenGen => {
                                 return (<div key={givenGen}>
                                     <label htmlFor={`gen${givenGen}`}>{`${givenGen}:`}</label>
-                                    <input type="checkbox" name="gens" id={`gen${givenGen}`} val={givenGen} defaultChecked />
+                                    <input type="checkbox" name={`gen${givenGen}`} id={`gen${givenGen}`} defaultChecked />
                                 </div>)
                             })}
                         </div>
