@@ -34,7 +34,11 @@ export default function App() {
     }, [])
 
     // Calculating Pareto Optimality
-    function calculateOptimal(formData) {
+    function calculateOptimal(event) {
+        // Pivot to form data (RIP action)
+        event.preventDefault()
+        const formData = new FormData(event.currentTarget)
+
         // Creating a 255 x 255 2D array
         let fillOutArr = Array.from({ length: 256 }, () => Array.from({ length: 256 }, () => []))
         // This is so stupid looking. 
@@ -175,7 +179,7 @@ export default function App() {
                 {!allPokes && <h2>Now loading...</h2>}
 
                 {/*A form that is available once all the mons are gotten*/}
-                {allPokes && <form action={calculateOptimal} className="filters">
+                {allPokes && <form onSubmit={calculateOptimal} className="filters">
                     {/* First row of req info */}
                     <section className="filters__required">
                         <div>
