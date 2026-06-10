@@ -6,7 +6,7 @@ import {
     LineElement,
     Title,
     Tooltip,
-    Legend,
+    plugins,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
@@ -17,20 +17,19 @@ ChartJS.register(
     LineElement,
     Title,
     Tooltip,
-    Legend
 );
 
 
 const options = {
     scales: {
         x: {
-            type: 'linear', 
+            type: 'linear',
             title: {
                 display: true,
                 text: "Stat A"
             },
-            min: 0,         
-            max: 255,       
+            min: 0,
+            max: 255,
         },
         y: {
             type: 'linear',
@@ -42,13 +41,24 @@ const options = {
             max: 255,
         },
     },
+    plugins: {
+        tooltip: {
+            callbacks: {
+                title: () => "",
+                label: (tooltipItem) => {
+                    let raw = tooltipItem.raw
+                    return `${raw.name} | (${raw.x},${raw.y})`
+                }
+            }
+        }
+    }
 };
 
 const data = {
     datasets: [
         {
-            label: 'Pareto Frontier',
-            data: [{x:100, y:100}, {x:200, y:200}],
+            label: 'Example',
+            data: [{ x: 100, y: 100, name: "A" }, { x: 200, y: 200, name: "B" }, { x: 200, y: 200, name: "C" }],
             borderColor: 'rgb(0, 0, 0)',
             backgroundColor: 'rgb(0, 0, 0)',
         },

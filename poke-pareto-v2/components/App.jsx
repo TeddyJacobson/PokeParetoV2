@@ -20,6 +20,13 @@ export default function App() {
 
     }, [])
 
+    
+    // // Calculating Pareto Optimality
+    // function generateGraph()
+    // {
+
+    // }
+
 
     return (
         <>
