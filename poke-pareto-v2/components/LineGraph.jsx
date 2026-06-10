@@ -20,52 +20,51 @@ ChartJS.register(
 );
 
 
-const options = {
-    scales: {
-        x: {
-            type: 'linear',
-            title: {
-                display: true,
-                text: "Stat A"
+export function LineGraph(props) {
+    const options = {
+        scales: {
+            x: {
+                type: 'linear',
+                title: {
+                    display: true,
+                    text: props.stat1
+                },
+                min: 0,
+                max: 300,
             },
-            min: 0,
-            max: 255,
-        },
-        y: {
-            type: 'linear',
-            title: {
-                display: true,
-                text: "Stat B"
+            y: {
+                type: 'linear',
+                title: {
+                    display: true,
+                    text: props.stat2
+                },
+                min: 0,
+                max: 300,
             },
-            min: 0,
-            max: 255,
         },
-    },
-    plugins: {
-        tooltip: {
-            callbacks: {
-                title: () => "",
-                label: (tooltipItem) => {
-                    let raw = tooltipItem.raw
-                    return `${raw.name} | (${raw.x},${raw.y})`
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: () => "",
+                    label: (tooltipItem) => {
+                        let raw = tooltipItem.raw
+                        return `${raw.name} | (${raw.x},${raw.y})`
+                    }
                 }
             }
         }
-    }
-};
+    };
 
-const data = {
-    datasets: [
-        {
-            label: 'Example',
-            data: [{ x: 100, y: 100, name: "A" }, { x: 200, y: 200, name: "B" }, { x: 200, y: 200, name: "C" }],
-            borderColor: 'rgb(0, 0, 0)',
-            backgroundColor: 'rgb(0, 0, 0)',
-        },
-    ],
-};
+    const data = {
+        datasets: [
+            {
+                label: 'Pareto Frontier',
+                data: props.winners,
+                borderColor: 'rgb(0, 0, 0)',
+                backgroundColor: 'rgb(0, 0, 0)',
+            },
+        ],
+    };
 
-
-export function LineGraph() {
     return <Line options={options} data={data} />
 }
