@@ -6,6 +6,7 @@ export default function App() {
     // A list of every pokemon
     const [allPokes, setAllPokes] = useState(null)
 
+    // State to track calculated curve stats and mons
     const [paretoCurve, setParetoCurve] = useState(null)
     const [pCurveStat1, setPCurveStat1] = useState("")
     const [pCurveStat2, setPCurveStat2] = useState("")
@@ -112,6 +113,8 @@ export default function App() {
                 </select>
                 <button>Get Curve</button>
             </form>}
+
+            {/* Shows the graph once some results are gotten */}
             {paretoCurve && <LineGraph
                 stat1 = {pCurveStat1}
                 stat2 = {pCurveStat2}
