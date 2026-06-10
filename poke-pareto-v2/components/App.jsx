@@ -1,6 +1,11 @@
+// Utility Packages
 import { PokeDex } from "@atosjs/pokemon";
 import { useState, useEffect } from "react"
 import { LineGraph } from "./LineGraph";
+
+// Styling Packages
+import "./app.css"
+
 
 export default function App() {
     // A list of every pokemon
@@ -86,40 +91,53 @@ export default function App() {
 
 
     return (
-        <>
-            <h1>
-                Pokemon Pareto V2
-            </h1>
+        <main className="background">
 
-            {/*A form that is available once all the mons are gotten*/}
-            {allPokes && <form action={calculateOptimal}>
-                <label htmlFor="stat1">Stat 1</label>
-                <select id="stat1" name="stat1">
-                    <option value={"HP"}>hp</option>
-                    <option value={"Attack"}>atk</option>
-                    <option value={"Defense"}>def</option>
-                    <option value={"Special Attack"}>sp atk</option>
-                    <option value={"Special Defense"}>sp def</option>
-                    <option value={"Speed"}>speed</option>
-                </select>
-                <label htmlFor="stat2">Stat 2</label>
-                <select id="stat2" name="stat2">
-                    <option value={"HP"}>hp</option>
-                    <option value={"Attack"}>atk</option>
-                    <option value={"Defense"}>def</option>
-                    <option value={"Special Attack"}>sp atk</option>
-                    <option value={"Special Defense"}>sp def</option>
-                    <option value={"Speed"}>speed</option>
-                </select>
-                <button>Get Curve</button>
-            </form>}
+            <header>
+                <h1>
+                    Pokemon Pareto V2
+                </h1>
+            </header>
+
+            <section>
+
+                {/*A form that is available once all the mons are gotten*/}
+                {allPokes && <form action={calculateOptimal} className="filters">
+                    <div>
+                        <label htmlFor="stat1">Stat 1: </label>
+                        <select id="stat1" name="stat1">
+                            <option value={"HP"}>hp</option>
+                            <option value={"Attack"}>atk</option>
+                            <option value={"Defense"}>def</option>
+                            <option value={"Special Attack"}>sp atk</option>
+                            <option value={"Special Defense"}>sp def</option>
+                            <option value={"Speed"}>speed</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="stat2">Stat 2: </label>
+                        <select id="stat2" name="stat2">
+                            <option value={"HP"}>hp</option>
+                            <option value={"Attack"}>atk</option>
+                            <option value={"Defense"}>def</option>
+                            <option value={"Special Attack"}>sp atk</option>
+                            <option value={"Special Defense"}>sp def</option>
+                            <option value={"Speed"}>speed</option>
+                        </select>
+                    </div>
+
+                    <button>Get Curve</button>
+                </form>}
+
+            </section>
 
             {/* Shows the graph once some results are gotten */}
             {paretoCurve && <LineGraph
-                stat1 = {pCurveStat1}
-                stat2 = {pCurveStat2}
-                winners = {paretoCurve}
+                stat1={pCurveStat1}
+                stat2={pCurveStat2}
+                winners={paretoCurve}
             />}
-        </>
+        </main>
     )
 }
