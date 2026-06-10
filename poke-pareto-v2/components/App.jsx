@@ -6,6 +6,9 @@ import { LineGraph } from "./LineGraph";
 // Styling Packages
 import "./app.css"
 
+// All types in pokemon
+const types = ['normal', 'fire', 'fighting', 'water', 'flying', 'grass', 'poison', 'electric', 'ground', 'psychic', 'rock', 'ice', 'bug', 'dragon', 'ghost', 'dark', 'steel', 'fairy']
+
 
 export default function App() {
     // A list of every pokemon
@@ -101,33 +104,79 @@ export default function App() {
 
             <section>
 
+                {/* Loading indicator */}
+                {!allPokes && <h2>Now loading...</h2>}
+
                 {/*A form that is available once all the mons are gotten*/}
                 {allPokes && <form action={calculateOptimal} className="filters">
-                    <div>
-                        <label htmlFor="stat1">Stat 1: </label>
-                        <select id="stat1" name="stat1">
-                            <option value={"HP"}>hp</option>
-                            <option value={"Attack"}>atk</option>
-                            <option value={"Defense"}>def</option>
-                            <option value={"Special Attack"}>sp atk</option>
-                            <option value={"Special Defense"}>sp def</option>
-                            <option value={"Speed"}>speed</option>
-                        </select>
-                    </div>
+                    {/* First row of req info */}
+                    <section className="filters__required">
+                        <div>
+                            <label htmlFor="stat1">Stat 1: </label>
+                            <select id="stat1" name="stat1">
+                                <option value={"HP"}>hp</option>
+                                <option value={"Attack"}>atk</option>
+                                <option value={"Defense"}>def</option>
+                                <option value={"Special Attack"}>sp atk</option>
+                                <option value={"Special Defense"}>sp def</option>
+                                <option value={"Speed"}>speed</option>
+                            </select>
+                        </div>
 
-                    <div>
-                        <label htmlFor="stat2">Stat 2: </label>
-                        <select id="stat2" name="stat2">
-                            <option value={"HP"}>hp</option>
-                            <option value={"Attack"}>atk</option>
-                            <option value={"Defense"}>def</option>
-                            <option value={"Special Attack"}>sp atk</option>
-                            <option value={"Special Defense"}>sp def</option>
-                            <option value={"Speed"}>speed</option>
-                        </select>
-                    </div>
+                        <div>
+                            <label htmlFor="stat2">Stat 2: </label>
+                            <select id="stat2" name="stat2">
+                                <option value={"HP"}>hp</option>
+                                <option value={"Attack"}>atk</option>
+                                <option value={"Defense"}>def</option>
+                                <option value={"Special Attack"}>sp atk</option>
+                                <option value={"Special Defense"}>sp def</option>
+                                <option value={"Speed"}>speed</option>
+                            </select>
+                        </div>
 
-                    <button>Get Curve</button>
+                        <button>Get Frontier</button>
+                    </section>
+
+                    <br></br>
+
+                    {/* Additional checkbox filters */}
+                    <section >
+                        <label htmlFor="types" className="filters__check-box-intro">Permitted Types: </label>
+                        <div id="types" className="filters__check-box">
+                            {types.slice(0, 8).map(givenType => {
+                                return (<div key={givenType}>
+                                    <label htmlFor={givenType}>{givenType}:</label>
+                                    <input type="checkbox" name="types" id={givenType} val={givenType} defaultChecked />
+                                </div>)
+                            })}
+                        </div>
+                        <div id="types" className="filters__check-box">
+                            {types.slice(9).map(givenType => {
+                                return (<div key={givenType}>
+                                    <label htmlFor={givenType}>{givenType}:</label>
+                                    <input type="checkbox" name="types" id={givenType} val={givenType} defaultChecked />
+                                </div>)
+                            })}
+                        </div>
+
+                        <br></br>
+
+                        <label htmlFor="gens" className="filters__check-box-intro">Permitted Generations: </label>
+                        <div id="types" className="filters__check-box">
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(givenGen => {
+                                return (<div key={givenGen}>
+                                    <label htmlFor={`gen${givenGen}`}>{`${givenGen}:`}</label>
+                                    <input type="checkbox" name="gens" id={`gen${givenGen}`} val={givenGen} defaultChecked />
+                                </div>)
+                            })}
+                        </div>
+
+
+                    </section>
+
+
+
                 </form>}
 
             </section>
