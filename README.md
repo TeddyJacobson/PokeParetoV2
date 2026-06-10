@@ -7,7 +7,7 @@ Note: many nuances of the dex are not accounted for:
 - Only pokemon up to gen 9 DLC are included
 - Megas are excluded, vital abilities are ignored, different forms (such as Rotom forms) are gone, etc
 - Meltan and Melmetal are considered gen 8, Hisui pokemon are considered gen 9
-- And I am sure a lot more I am missing. In this case, I blame the dataset.
+- And I am there is sure a lot more I am missing. In this case, I blame the dataset.
 
 Important packages to shout out:
 - ChartJS - used for the graphs
