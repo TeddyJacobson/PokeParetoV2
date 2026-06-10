@@ -7,7 +7,7 @@ import { LineGraph } from "./LineGraph";
 import "./app.css"
 
 // All types in pokemon
-const types = ['normal', 'fire', 'fighting', 'water', 'flying', 'grass', 'poison', 'electric', 'ground', 'psychic', 'rock', 'ice', 'bug', 'dragon', 'ghost', 'dark', 'steel', 'fairy']
+const types = ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water']
 
 
 export default function App() {
@@ -51,22 +51,47 @@ export default function App() {
         statToVal.set("Special Defense", 4)
         statToVal.set("Speed", 5)
 
+        // Getting the chosen types to optimize
+        const checkTypeMap = new Map()
+        for (let i = 0; i < types.length; i++) {
+            checkTypeMap.set(types[i], formData.get(types[i]))
+        }
+        
+
+        // Getting the chosen generations to optimize
+        //TODO:
+
+
         // Radix sort style, inserts all pokemon as graph cords into the 3D array
         allPokes.forEach(pokemon => {
+            // Check mon is valid
+            let isValid = true
 
-            // Compiles each base stats into a simple list
-            let selectArray = Object.values(pokemon.base_stats)
-
-            // Getting base stats off form data
-            let base1 = selectArray[statToVal.get(stat1)]
-            let base2 = selectArray[statToVal.get(stat2)]
-
-            // Inserts a pokemon into the 3d array
-            fillOutArr[base1][base2].push({
-                name: pokemon.name,
-                x: base1,
-                y: base2
+            // Check types
+            pokemon.type.forEach(type => {
+                if (checkTypeMap.get(type) == null) {
+                    isValid = false;
+                }
             })
+
+            // Check gen
+
+            if (isValid) {
+                // Compiles each base stats into a simple list
+                let selectArray = Object.values(pokemon.base_stats)
+
+                // Getting base stats off form data
+                let base1 = selectArray[statToVal.get(stat1)]
+                let base2 = selectArray[statToVal.get(stat2)]
+
+                // Inserts a pokemon into the 3d array
+                fillOutArr[base1][base2].push({
+                    name: pokemon.name,
+                    x: base1,
+                    y: base2
+                })
+            }
+
         })
 
         // Every pokemon on the pareto optimal curve
@@ -144,10 +169,10 @@ export default function App() {
                     <section >
                         <label htmlFor="types" className="filters__check-box-intro">Permitted Types: </label>
                         <div id="types" className="filters__check-box">
-                            {types.slice(0, 8).map(givenType => {
+                            {types.slice(0, 9).map(givenType => {
                                 return (<div key={givenType}>
                                     <label htmlFor={givenType}>{givenType}:</label>
-                                    <input type="checkbox" name="types" id={givenType} val={givenType} defaultChecked />
+                                    <input type="checkbox" name={givenType} id={givenType} val={givenType} defaultChecked />
                                 </div>)
                             })}
                         </div>
@@ -155,7 +180,7 @@ export default function App() {
                             {types.slice(9).map(givenType => {
                                 return (<div key={givenType}>
                                     <label htmlFor={givenType}>{givenType}:</label>
-                                    <input type="checkbox" name="types" id={givenType} val={givenType} defaultChecked />
+                                    <input type="checkbox" name={givenType} id={givenType} val={givenType} defaultChecked />
                                 </div>)
                             })}
                         </div>
