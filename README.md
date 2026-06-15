@@ -12,7 +12,7 @@ Important packages to shout out:
 
 Final note: I created this app over two days just for fun. Thus, I did not put in a lot of time into the styling. Apologies in advance for any issues caused by my not-so-responsive design.
 
----
+
 <h1>Limitations</h1>
 
 Many nuances of the dex are not accounted for:
@@ -22,7 +22,7 @@ Many nuances of the dex are not accounted for:
 - Meltan and Melmetal are considered Gen 8, Hisui Pokemon are considered Gen 9
 - I am sure there is a lot more I am missing. In this case, I blame the dataset...
 
----
+
 <h1>To Use</h1>
 
 1. Download the repo
