@@ -26,6 +26,6 @@ Many nuances of the dex are not accounted for:
 <h1>To Use</h1>
 
 1. Download the repo
-2. cd into the poke-pareto-v2 folder
-3. Run: npm run dev
-4. Open the local web hosted page and have fun
+2. Cd into the poke-pareto-v2 folder
+3. In terminal, run: npm run dev
+1. Open the local web hosted page and have fun
